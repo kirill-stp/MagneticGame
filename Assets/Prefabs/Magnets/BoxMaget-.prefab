@@ -121,7 +121,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18d15b12a77524eab987cc6592e239e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xForceValue: -6
-  yForceValue: -6
-  ball: {fileID: 0}
+  forceValue: -6
   boxCollider: {fileID: 2862817295597684675}

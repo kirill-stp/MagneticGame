@@ -7,17 +7,33 @@ public class BallMagnet : MonoBehaviour
 {
     #region Variables
 
-    [SerializeField]private float forceValue;
+    [SerializeField] private float forceValue;
+    public float ForceValue => forceValue;
     [SerializeField] private Ball ball;
+
+    #endregion
+
+    #region Events
+
+    public Action OnMagnetDrag;
 
     #endregion
 
     #region Unity lifecycle
 
+    private void Start()
+    {
+        OnMagnetDrag += AttractBall;
+    }
+
+    private void AttractBall()
+    {
+        ball.ToBallMagnet(transform, forceValue);
+    }
+
     private void OnMouseDrag()
     {
-        print(nameof(OnMouseDrag));
-        ball.ToBallMagnet(transform,forceValue);
+        OnMagnetDrag();
     }
 
     #endregion
