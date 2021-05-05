@@ -9,7 +9,7 @@ public class EndHole : MonoBehaviour
 {
     #region Unity lifecycle
 
-    private SceneLoader sceneLoader;
+    [SerializeField]private SceneLoader sceneLoader;
 
     private void Start()
     {
@@ -18,7 +18,7 @@ public class EndHole : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        sceneLoader.LoadScene(1);
+        sceneLoader.LoadNextScene();
     }
 
     #endregion

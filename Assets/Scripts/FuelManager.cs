@@ -11,6 +11,7 @@ public class FuelManager : MonoBehaviour
     private float currentFuel;
     
     private SceneLoader sceneLoader;
+    private UiManager uiManager;
 
     #endregion
 
@@ -21,18 +22,9 @@ public class FuelManager : MonoBehaviour
         currentFuel = maxFuel;
         
         sceneLoader = FindObjectOfType<SceneLoader>();
-        var ballMagnets = FindObjectsOfType<BallMagnet>();
-        var boxMagnets = FindObjectsOfType<BoxMagnet>();
-        foreach (var magnet in ballMagnets)
-        {
-            magnet.OnMagnetDrag += () => ConsumeFuel(Math.Abs(magnet.ForceValue));
-        }
+        uiManager = FindObjectOfType<UiManager>();
 
-        foreach (var magnet in boxMagnets)
-        {
-            magnet.OnMagnetDrag += () => ConsumeFuel(Math.Abs(magnet.ForceValue));
-        }
-        
+        AddToMagnets();
     }
 
     #endregion
@@ -42,7 +34,7 @@ public class FuelManager : MonoBehaviour
     public void ConsumeFuel(float value)
     {
         currentFuel -= value;
-        print(currentFuel.ToString());
+        uiManager.SetFuelLevel(currentFuel);
         CheckFuelLevel();
     }
 
@@ -54,7 +46,22 @@ public class FuelManager : MonoBehaviour
     {
         if (currentFuel <= 0)
         {
-            sceneLoader.LoadScene(1);
+            sceneLoader.LoadScene("GameOverScene");
+        }
+    }
+
+    private void AddToMagnets()
+    {
+        var ballMagnets = FindObjectsOfType<BallMagnet>();
+        var boxMagnets = FindObjectsOfType<BoxMagnet>();
+        foreach (var magnet in ballMagnets)
+        {
+            magnet.OnMagnetDrag += () => ConsumeFuel(Math.Abs(magnet.ForceValue));
+        }
+
+        foreach (var magnet in boxMagnets)
+        {
+            magnet.OnMagnetDrag += () => ConsumeFuel(Math.Abs(magnet.ForceValue));
         }
     }
 
