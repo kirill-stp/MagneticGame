@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelManager : SingletonMonoBehaviour<LevelManager>
+public class LevelManager : MonoBehaviour
 {
     private SceneLoader sceneLoader;
     private EndHole endHole;

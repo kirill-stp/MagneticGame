@@ -6,7 +6,7 @@ using System.Xml.Schema;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UiManager : SingletonMonoBehaviour<UiManager>
+public class UiManager : MonoBehaviour
 {
 
     #region Variables
@@ -19,7 +19,7 @@ public class UiManager : SingletonMonoBehaviour<UiManager>
 
     public void SetFuelLevel(float value)
     {
-        fuelText.text = $"Power: {value.ToString(CultureInfo.InvariantCulture)}";
+        fuelText.text = $"Power:\n{Math.Round(value,2).ToString(CultureInfo.InvariantCulture)}";
     }
 
     #endregion

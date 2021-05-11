@@ -86,7 +86,6 @@ GameObject:
   - component: {fileID: 3387149432766312476}
   - component: {fileID: 6990990362340447433}
   - component: {fileID: 8415818623510184871}
-  - component: {fileID: 2285135712966684627}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -174,18 +173,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2285135712966684627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3928615932417640229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96ed2b4f79d6deb4bad51e44161d54be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4239727748991836003
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,8 +245,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -109.35, y: 0.43}
-  m_SizeDelta: {x: 185.4888, y: 88.69672}
+  m_AnchoredPosition: {x: -109.350006, y: -0.36999893}
+  m_SizeDelta: {x: 185.4888, y: 90.29266}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3058438042465386520
 CanvasRenderer:
@@ -290,11 +277,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 38
+    m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 4
+    m_MaxSize: 47
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 0

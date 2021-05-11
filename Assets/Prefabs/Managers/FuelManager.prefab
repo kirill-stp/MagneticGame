@@ -43,4 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 333cb9ca9d7b145f99e022b7d1308f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxFuel: 1000
+  maxFuel: 100
