@@ -111,5 +111,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d58e213750d41499e31c4a06d96faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceValue: -6
+  forceValue: -5
   ball: {fileID: 0}

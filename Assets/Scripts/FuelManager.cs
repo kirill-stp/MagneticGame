@@ -10,8 +10,13 @@ public class FuelManager : MonoBehaviour
     [SerializeField] private float maxFuel;
     private float currentFuel;
     
-    private SceneLoader sceneLoader;
     private UiManager uiManager;
+
+    #endregion
+
+    #region Events
+
+    public Action OnFuelEnd;
 
     #endregion
 
@@ -21,7 +26,6 @@ public class FuelManager : MonoBehaviour
     {
         currentFuel = maxFuel;
         
-        sceneLoader = FindObjectOfType<SceneLoader>();
         uiManager = FindObjectOfType<UiManager>();
 
         AddToMagnets();
@@ -46,7 +50,8 @@ public class FuelManager : MonoBehaviour
     {
         if (currentFuel <= 0)
         {
-            sceneLoader.LoadScene("GameOverScene");
+            OnFuelEnd();
+            OnFuelEnd = null;
         }
     }
 
@@ -56,12 +61,12 @@ public class FuelManager : MonoBehaviour
         var boxMagnets = FindObjectsOfType<BoxMagnet>();
         foreach (var magnet in ballMagnets)
         {
-            magnet.OnMagnetDrag += () => ConsumeFuel(Math.Abs(magnet.ForceValue));
+            magnet.OnMagnetDrag += () => ConsumeFuel(Math.Abs(magnet.ForceValue/100));
         }
 
         foreach (var magnet in boxMagnets)
         {
-            magnet.OnMagnetDrag += () => ConsumeFuel(Math.Abs(magnet.ForceValue));
+            magnet.OnMagnetDrag += () => ConsumeFuel(Math.Abs(magnet.ForceValue/100));
         }
     }
 

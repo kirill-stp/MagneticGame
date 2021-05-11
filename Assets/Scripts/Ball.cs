@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
@@ -14,33 +16,39 @@ public class Ball : MonoBehaviour
 
     public void ToBallMagnet(Transform magnet, float forceValue)
     {
-        rb.AddForce((Vector2)(magnet.position - transform.position ) * forceValue);
+        var direction = magnet.position - transform.position;
+        var distance = direction.magnitude;
+        var force = (Vector2)direction.normalized * forceValue / distance;
+        rb.AddForce(force);
     }
 
     public void ToBoxMagnet(Transform magnet, BoxCollider2D magnetBox, float forceValue)
     {
         var bounds = magnetBox.bounds;
+        Vector2 force;
         
+        // to the left or right from manget
         if ((bounds.min.y < transform.position.y &&
              bounds.max.y > transform.position.y) &&
             (transform.position.x < bounds.min.x || transform.position.x > bounds.max.x))
         {
-            // to the left or right of the magnet
-            var force = (magnet.position.x - transform.position.x) * forceValue;
-            var horizontalForce = new Vector2(force, 0);
-            rb.AddForce(horizontalForce);
+            var distance = magnet.position.x - transform.position.x;
+            force = new Vector2(forceValue/distance, 0);
         }
+        // top or bottom
         else if ((bounds.min.x < transform.position.x &&
                   bounds.max.x > transform.position.x) &&
                  (transform.position.y < bounds.min.y || transform.position.y > bounds.max.y))
         {
-            // to the top or bottom of the magnet
-            var force = (magnet.position.y - transform.position.y) * forceValue;
-            var verticalForce = new Vector2(0, force);
-            rb.AddForce(verticalForce);
+            var distance = magnet.position.y - transform.position.y;
+            force = new Vector2(0,forceValue/distance);
         }
-
+        else return;
+        
+        rb.AddForce(force);
     }
+
+    
 
     #endregion
 }

@@ -5,17 +5,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
 {
-    #region Unity lifecycle
-
-    public void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
-
-    #endregion
-    
     #region Public methods
 
     public void LoadScene(int index)

@@ -7,19 +7,19 @@ using UnityEngine.Timeline;
 
 public class EndHole : MonoBehaviour
 {
+    #region Events
+
+    public Action OnHoleEnter;
+
+    #endregion
+    
     #region Unity lifecycle
-
-    [SerializeField]private SceneLoader sceneLoader;
-
-    private void Start()
-    {
-        sceneLoader = FindObjectOfType<SceneLoader>();
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        sceneLoader.LoadNextScene();
+        OnHoleEnter();
     }
 
     #endregion
+    
 }
