@@ -1,20 +1,21 @@
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class BoxMagnetExample : MagnetExample
+public class BoxMagnet : Magnet
 {
     #region Variables
 
-    [Header(nameof(BoxMagnetExample))]
+    [Header(nameof(BoxMagnet))] 
     [SerializeField] private BoxCollider2D boxCollider;
 
     #endregion
-
 
     #region Private methods
 
     protected override void ApplyForce(Ball ball)
     {
-        var magnetTransform = transform; // Some kind of cache
+        var magnetTransform = transform;
         var bounds = boxCollider.bounds;
         var ballTransform = ball.transform;
         var ballPosition = ballTransform.position;
@@ -31,7 +32,7 @@ public class BoxMagnetExample : MagnetExample
 
         // top or bottom
         else if ((bounds.min.x < ballPosition.x && bounds.max.x > ballPosition.x) &&
-            (ballPosition.y < bounds.min.y || ballPosition.y > bounds.max.y))
+                 (ballPosition.y < bounds.min.y || ballPosition.y > bounds.max.y))
         {
             var distance = magnetTransform.position.y - ballPosition.y;
             force = new Vector2(0, forceValue / distance);

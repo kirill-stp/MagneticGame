@@ -1,7 +1,9 @@
-public class BallMagnetExample : MagnetExample
-{
-    #region Private methods
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
+public class BallMagnet : Magnet
+{
     protected override void ApplyForce(Ball ball)
     {
         var direction = transform.position - ball.transform.position;
@@ -9,6 +11,4 @@ public class BallMagnetExample : MagnetExample
         var force = direction.normalized * forceValue / distance;
         ball.AddForce(force);
     }
-
-    #endregion
 }

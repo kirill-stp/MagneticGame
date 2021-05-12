@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    #region Variables
+
     private SceneLoader sceneLoader;
     private EndHole endHole;
     private FuelManager fuelManager;
+
+    #endregion
+
+    #region Unity lifecycle
 
     private void Start()
     {
@@ -15,11 +18,18 @@ public class LevelManager : MonoBehaviour
         sceneLoader = FindObjectOfType<SceneLoader>();
         fuelManager = FindObjectOfType<FuelManager>();
         
-        // Same here. Subscription without unsubscription
-        // U dont handle last scene so u have an error in 3rd scene. Try add win scene or win view with some score
-        // and restart button
+        //TODO: add win scene or win view with some score and restart button
         endHole.OnHoleEnter += sceneLoader.LoadNextScene;
-        fuelManager.OnFuelEnd += () => sceneLoader.LoadScene(0);
-        // Try add buttons on game over scene with restart logic.
+        fuelManager.OnFuelEnd += sceneLoader.LoadEndScene;
+        //TODO: add buttons on game over scene with restart logic.
+        
     }
+
+    private void OnDestroy()
+    {
+        endHole.OnHoleEnter -= sceneLoader.LoadNextScene;
+        fuelManager.OnFuelEnd -= sceneLoader.LoadEndScene;
+    }
+
+    #endregion
 }

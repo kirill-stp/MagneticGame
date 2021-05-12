@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4828575540449876607}
   - component: {fileID: 9117119770514285699}
   - component: {fileID: 2862817295597684675}
-  - component: {fileID: 5916876110292190277}
+  - component: {fileID: 8514592105357150853}
   m_Layer: 0
   m_Name: BoxMaget-
   m_TagString: Untagged
@@ -109,7 +109,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9142857, y: 0.45714286}
   m_EdgeRadius: 0
---- !u!114 &5916876110292190277
+--- !u!114 &8514592105357150853
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 364521542694796965}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18d15b12a77524eab987cc6592e239e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d77e73e7a97b7544ab66affa684e4b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   forceValue: -5

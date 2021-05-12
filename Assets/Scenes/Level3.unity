@@ -134,6 +134,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2378458993347007180, guid: 699000ba82de58149afe2f1dc4f3a50d,
+        type: 3}
+      propertyPath: magnets.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378458993347007180, guid: 699000ba82de58149afe2f1dc4f3a50d,
+        type: 3}
+      propertyPath: magnets.Array.data[0]
+      value: 
+      objectReference: {fileID: 1804734560}
     - target: {fileID: 2378458993347007181, guid: 699000ba82de58149afe2f1dc4f3a50d,
         type: 3}
       propertyPath: m_RootOrder
@@ -209,6 +219,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1296550721}
     m_Modifications:
+    - target: {fileID: -1570571233204354355, guid: e5446a73b67a54edf80a9a2ff5f79ee0,
+        type: 3}
+      propertyPath: ball
+      value: 
+      objectReference: {fileID: 1190619208}
     - target: {fileID: 678271640266880009, guid: e5446a73b67a54edf80a9a2ff5f79ee0,
         type: 3}
       propertyPath: m_RootOrder
@@ -1128,6 +1143,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1804734560 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -1570571233204354355, guid: e5446a73b67a54edf80a9a2ff5f79ee0,
+    type: 3}
+  m_PrefabInstance: {fileID: 412192621}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d58e213750d41499e31c4a06d96faa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1897042998
 PrefabInstance:
   m_ObjectHideFlags: 0

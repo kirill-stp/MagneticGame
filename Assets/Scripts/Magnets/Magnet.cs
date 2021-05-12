@@ -1,15 +1,17 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class MagnetExample : MonoBehaviour
+public abstract class Magnet : MonoBehaviour
 {
     #region Variables
 
-    [Header(nameof(MagnetExample))]
+    [Header(nameof(Magnet))]
     [SerializeField] protected float forceValue;
     [SerializeField] private Ball ball;
 
     #endregion
-
 
     #region Properties
 
@@ -17,16 +19,21 @@ public abstract class MagnetExample : MonoBehaviour
 
     #endregion
 
+    #region Events
+
+    public event Action OnMagnetDrag;
+
+    #endregion
 
     #region Unity lifecycle
 
     private void OnMouseDrag()
     {
         ApplyForce(ball);
+        OnMagnetDrag?.Invoke();
     }
 
     #endregion
-
 
     #region Private methods
 

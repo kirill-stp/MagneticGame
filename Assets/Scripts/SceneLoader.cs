@@ -1,28 +1,34 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine.SceneManagement;
 
 public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
 {
-    #region Public methods
 
-    public void LoadScene(int index)
+    #region Private methods
+
+    private void LoadScene(int index)
     {
         SceneManager.LoadScene(index);
     }
-    
-    public void LoadScene(string sceneName)
+
+    private void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
+    
+    #endregion
+    
+    #region Public methods
+
 
     public void LoadNextScene()
     {
         var currentScene = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentScene + 1);
+        LoadScene(currentScene + 1);
+    }
+
+    public void LoadEndScene()
+    {
+        LoadScene(0);
     }
 
     #endregion
