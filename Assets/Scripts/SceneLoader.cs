@@ -23,6 +23,7 @@ public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
     {
         var currentScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentScene + 1);
+        print("scene loaded");
     }
 
     #endregion
