@@ -17,6 +17,7 @@ public class FuelManager : MonoBehaviour
     #region Events
 
     public Action OnFuelEnd;
+    //TODO: add cheat code that cap fuel at max lelvel
 
     #endregion
 

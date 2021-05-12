@@ -17,10 +17,13 @@ public class UiManager : MonoBehaviour
 
     #region Private methods
 
+    //TODO: make progress bar
     public void SetFuelLevel(float value)
     {
         fuelText.text = $"Power:\n{Math.Round(value,2).ToString(CultureInfo.InvariantCulture)}";
     }
+    
+    //TODO: make pause menu
 
     #endregion
 }
