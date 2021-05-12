@@ -9,7 +9,7 @@ public class EndHole : MonoBehaviour
 {
     #region Events
 
-    public Action OnHoleEnter;
+    public Action OnHoleEnter; // Why delegate?
 
     #endregion
     

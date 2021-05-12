@@ -14,6 +14,7 @@ public class Ball : MonoBehaviour
     
     #region Public Methods
 
+    // This logic better encapsulate in magnet classes
     public void ToBallMagnet(Transform magnet, float forceValue)
     {
         var direction = magnet.position - transform.position;
@@ -22,6 +23,7 @@ public class Ball : MonoBehaviour
         rb.AddForce(force);
     }
 
+    // This logic better encapsulate in magnet classes
     public void ToBoxMagnet(Transform magnet, BoxCollider2D magnetBox, float forceValue)
     {
         var bounds = magnetBox.bounds;
@@ -43,12 +45,16 @@ public class Ball : MonoBehaviour
             var distance = magnet.position.y - transform.position.y;
             force = new Vector2(0,forceValue/distance);
         }
-        else return;
+        else return; // return should be on new line for better readability 
         
         rb.AddForce(force);
     }
 
-    
+    // For Example
+    public void AddForce(Vector2 force)
+    {
+        rb.AddForce(force);
+    }
 
     #endregion
 }

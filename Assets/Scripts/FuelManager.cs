@@ -16,7 +16,7 @@ public class FuelManager : MonoBehaviour
 
     #region Events
 
-    public Action OnFuelEnd;
+    public Action OnFuelEnd; // Why delegate?
     //TODO: add cheat code that cap fuel at max lelvel
 
     #endregion
@@ -52,7 +52,7 @@ public class FuelManager : MonoBehaviour
         if (currentFuel <= 0)
         {
             OnFuelEnd();
-            OnFuelEnd = null;
+            OnFuelEnd = null; // This is ok, but there is better solution
         }
     }
 
@@ -60,8 +60,11 @@ public class FuelManager : MonoBehaviour
     {
         var ballMagnets = FindObjectsOfType<BallMagnet>();
         var boxMagnets = FindObjectsOfType<BoxMagnet>();
+        
         foreach (var magnet in ballMagnets)
         {
+            // Instead of writing ForceValue / 100 u can write ForceValue * 0.01f. Multiplication faster then division.
+            // Here u add lambda to delegate and dont remove it. It leads to memory leaks and bugs.
             magnet.OnMagnetDrag += () => ConsumeFuel(Math.Abs(magnet.ForceValue/100));
         }
 

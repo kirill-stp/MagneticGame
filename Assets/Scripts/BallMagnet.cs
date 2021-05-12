@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallMagnet : MonoBehaviour
+public class BallMagnet : MonoBehaviour // Copy\paste class
 {
     #region Variables
 
