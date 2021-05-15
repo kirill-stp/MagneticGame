@@ -137,7 +137,12 @@ PrefabInstance:
         type: 3}
       propertyPath: fuelText
       value: 
-      objectReference: {fileID: 263724760}
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476877223545875686, guid: 99e4bc3655bfa75478700a2c67dd518c,
+        type: 3}
+      propertyPath: progressBarImage
+      value: 
+      objectReference: {fileID: 992602228}
     - target: {fileID: 5476877223545875687, guid: 99e4bc3655bfa75478700a2c67dd518c,
         type: 3}
       propertyPath: m_RootOrder
@@ -195,18 +200,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99e4bc3655bfa75478700a2c67dd518c, type: 3}
---- !u!114 &263724760 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 298844046891517366, guid: 2abd2e137a20fe346aa7bcd8ab88fcbb,
-    type: 3}
-  m_PrefabInstance: {fileID: 992602227}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &295157018 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9209170844709039596, guid: 9735dc36c15a74481be39496cbb67807,
@@ -686,6 +679,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2abd2e137a20fe346aa7bcd8ab88fcbb, type: 3}
+--- !u!114 &992602228 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3808170396798557763, guid: 2abd2e137a20fe346aa7bcd8ab88fcbb,
+    type: 3}
+  m_PrefabInstance: {fileID: 992602227}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1254293879 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6214648201947083857, guid: d9f86a29e90a346c68e33958765fa990,

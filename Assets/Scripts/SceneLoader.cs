@@ -1,4 +1,5 @@
-﻿using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
 {
@@ -7,12 +8,21 @@ public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
 
     private void LoadScene(int index)
     {
-        SceneManager.LoadScene(index);
+        if (index < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(index);
+        }
+        else LoadWinScene();
     }
 
     private void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+    
+    private void LoadWinScene()
+    {
+        SceneManager.LoadScene(1);
     }
     
     #endregion
@@ -26,10 +36,20 @@ public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
         LoadScene(currentScene + 1);
     }
 
-    public void LoadEndScene()
+    public void LoadLoseScene()
     {
         LoadScene(0);
     }
 
+    public void LoadStartScene()
+    {
+        SceneManager.LoadScene(2);
+    }
+    
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+    
     #endregion
 }

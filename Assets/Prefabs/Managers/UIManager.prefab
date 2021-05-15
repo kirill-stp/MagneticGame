@@ -43,4 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc84fb59059da4a5da7b7c96eebe7f92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuelText: {fileID: 0}
+  progressBarImage: {fileID: 0}
+  fullFuelSprite: {fileID: 21300000, guid: 46eb0043693812b47a87feb7ffb26dc1, type: 3}
+  mediumFuelSprite: {fileID: 21300000, guid: 0ac099e23e7471b4b85629a36010e61c, type: 3}
+  lowFuelSprite: {fileID: 21300000, guid: 8d06b326dab7377429a1a2ce558b46af, type: 3}

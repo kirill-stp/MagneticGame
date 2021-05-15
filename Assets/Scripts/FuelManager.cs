@@ -9,7 +9,6 @@ public class FuelManager : MonoBehaviour
     private float currentFuel;
     [SerializeField] private Magnet[] magnets;
     
-    
     private UiManager uiManager;
 
     #endregion
@@ -44,7 +43,7 @@ public class FuelManager : MonoBehaviour
     private void ConsumeFuel(float value)
     {
         currentFuel -= value;
-        uiManager.SetFuelLevel(currentFuel);
+        uiManager.SetFuelLevel(currentFuel/maxFuel);
         CheckFuelLevel();
     }
 

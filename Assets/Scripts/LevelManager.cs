@@ -18,17 +18,15 @@ public class LevelManager : MonoBehaviour
         sceneLoader = FindObjectOfType<SceneLoader>();
         fuelManager = FindObjectOfType<FuelManager>();
         
-        //TODO: add win scene or win view with some score and restart button
+        //TODO: add view with some score
         endHole.OnHoleEnter += sceneLoader.LoadNextScene;
-        fuelManager.OnFuelEnd += sceneLoader.LoadEndScene;
-        //TODO: add buttons on game over scene with restart logic.
-        
+        fuelManager.OnFuelEnd += sceneLoader.LoadLoseScene;
     }
 
     private void OnDestroy()
     {
         endHole.OnHoleEnter -= sceneLoader.LoadNextScene;
-        fuelManager.OnFuelEnd -= sceneLoader.LoadEndScene;
+        fuelManager.OnFuelEnd -= sceneLoader.LoadLoseScene;
     }
 
     #endregion
