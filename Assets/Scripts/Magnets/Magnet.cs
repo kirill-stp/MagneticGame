@@ -33,6 +33,17 @@ public abstract class Magnet : MonoBehaviour
         OnMagnetDrag?.Invoke();
     }
 
+    private void OnMouseDown()
+    {
+        ball.TurnTrailOn(forceValue);
+    }
+
+    private void OnMouseUp()
+    {
+        ball.TurnTrailOff();
+    }
+    
+
     #endregion
 
     #region Private methods
