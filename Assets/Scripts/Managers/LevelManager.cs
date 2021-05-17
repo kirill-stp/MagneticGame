@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
@@ -20,16 +21,18 @@ public class LevelManager : MonoBehaviour
         sceneLoader = FindObjectOfType<SceneLoader>();
         fuelManager = FindObjectOfType<FuelManager>();
         scoreManager = FindObjectOfType<ScoreManager>();
-        // ???
-        var scoreManagers = FindObjectsOfType<ScoreManager>();
-        print($"managers found : {scoreManagers.Length}");
-        
-        print($"score manager fuel: {scoreManager.fuelSaved}");
-        
-        //TODO: add view with some score
+
         endHole.OnHoleEnter += sceneLoader.LoadNextScene;
         endHole.OnHoleEnter += AddFuelToScore;
         fuelManager.OnFuelEnd += sceneLoader.LoadLoseScene;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            FuelManager.TurnCheat();
+        }
     }
 
     private void OnDestroy()
@@ -41,7 +44,7 @@ public class LevelManager : MonoBehaviour
 
     #endregion
 
-    #region Private methods
+     #region Private methods
 
     private void AddFuelToScore()
     {

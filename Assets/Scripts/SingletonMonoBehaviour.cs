@@ -20,12 +20,12 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
 
     #region Unity lifecycle
 
-    protected async void Awake()
+    protected void Awake()
     {
         if (instance != null)
         {
-            //gameObject.SetActive(false);
-            DestroyImmediate(gameObject);
+            gameObject.SetActive(false);
+            Destroy(gameObject);
 
             return;
         }

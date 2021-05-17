@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
 {
     #region Variables
 
-    public float fuelSaved;
+    private float fuelSaved;
 
     #endregion
 
@@ -22,7 +23,7 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
 
     private void Start()
     {
-        print("ScoreManager START is called");
+        SceneLoader.OnStartSceneLoaded += ResetFuel;
         fuelSaved = 0;
     }
 
@@ -32,8 +33,13 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
 
     public void AddFuelSaved(float value)
     {
-        this.fuelSaved += value;
-        print($"new fuel :{fuelSaved.ToString()}");
+        fuelSaved += value;
+    }
+
+    public void ResetFuel()
+    {
+        print("Fuel reseted");
+        fuelSaved = 0;
     }
 
     #endregion

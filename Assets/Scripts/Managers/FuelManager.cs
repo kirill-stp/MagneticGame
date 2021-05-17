@@ -7,10 +7,13 @@ public class FuelManager : MonoBehaviour
 
     [SerializeField] private float maxFuel;
     private float currentFuel;
-    [SerializeField] private Magnet[] magnets;
     
+    [SerializeField] private Magnet[] magnets;
+
     private UiManager uiManager;
 
+    private static bool isCheatOn;
+    
     #endregion
 
     #region Properties
@@ -34,6 +37,8 @@ public class FuelManager : MonoBehaviour
     private void Start()
     {
         currentFuel = maxFuel;
+
+        isCheatOn = false;
         
         uiManager = FindObjectOfType<UiManager>();
 
@@ -51,9 +56,15 @@ public class FuelManager : MonoBehaviour
 
     private void ConsumeFuel(float value)
     {
+        if (isCheatOn) return;
         currentFuel -= value;
         uiManager.SetFuelLevel(currentFuel/maxFuel);
         CheckFuelLevel();
+    }
+
+    public static void TurnCheat()
+    {
+        isCheatOn = !isCheatOn;
     }
 
     #endregion

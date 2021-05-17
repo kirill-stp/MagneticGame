@@ -1,9 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
 {
 
+    #region Events
+
+    public static event Action OnStartSceneLoaded;
+
+    #endregion
+    
     #region Private methods
 
     private void LoadScene(int index)
@@ -43,6 +50,7 @@ public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
 
     public void LoadStartScene()
     {
+        OnStartSceneLoaded?.Invoke();
         SceneManager.LoadScene(2);
     }
     
