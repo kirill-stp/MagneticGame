@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
@@ -18,11 +20,12 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
 
     #region Unity lifecycle
 
-    protected void Awake()
+    protected async void Awake()
     {
         if (instance != null)
         {
-            Destroy(gameObject);
+            //gameObject.SetActive(false);
+            DestroyImmediate(gameObject);
 
             return;
         }

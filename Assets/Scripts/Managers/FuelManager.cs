@@ -13,6 +13,15 @@ public class FuelManager : MonoBehaviour
 
     #endregion
 
+    #region Properties
+
+    public float CurrentFuel
+    {
+        get => currentFuel;
+    }
+
+    #endregion
+
     #region Events
 
     public event Action OnFuelEnd;
