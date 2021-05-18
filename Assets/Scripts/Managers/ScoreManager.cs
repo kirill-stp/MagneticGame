@@ -5,6 +5,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Remove aaaaaallll unused usings 
+
 public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
 {
     #region Variables
@@ -13,22 +15,26 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
 
     #endregion
 
+
     #region Properties
 
     public float FuelSaved => fuelSaved;
 
     #endregion
 
+
     #region Unity lifecycle
 
     private void Start()
     {
+        // Dont see unsubscription 
         SceneLoader.OnStartSceneLoaded += ResetFuel;
         fuelSaved = 0;
     }
 
     #endregion
-    
+
+
     #region Public methods
 
     public void AddFuelSaved(float value)

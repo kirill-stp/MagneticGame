@@ -22,12 +22,18 @@ public class LevelManager : MonoBehaviour
         isPaused = false;
         
         // DI
-        endHole = FindObjectOfType<EndHole>();
-        sceneLoader = FindObjectOfType<SceneLoader>();
+        scoreManager = ScoreManager.Instance; // U can use singleton benefits here. This type of injection is nice for singleton
+        sceneLoader = SceneLoader.Instance;
+        
         fuelManager = FindObjectOfType<FuelManager>();
-        scoreManager = FindObjectOfType<ScoreManager>();
+        endHole = FindObjectOfType<EndHole>();
         inputManager = FindObjectOfType<InputManager>();
 
+        
+        // Subscriptions and unsubscription is better do in OnEnable and OnDisable
+        // Cuz when ur game object become inactive he continue to handle events in ur case
+        
+        // And better to use separate methods for event like EndHole_OnHoleEnter
         endHole.OnHoleEnter += sceneLoader.LoadNextScene;
         endHole.OnHoleEnter += AddFuelToScore;
         fuelManager.OnFuelEnd += sceneLoader.LoadLoseScene;
@@ -58,14 +64,7 @@ public class LevelManager : MonoBehaviour
     private void TogglePause()
     {
         isPaused = !isPaused;
-        if (isPaused)
-        {
-            Time.timeScale = 0;
-        }
-        else
-        {
-            Time.timeScale = 1;
-        }
+        Time.timeScale = isPaused ? 0 : 1; // Use this type of operator where possible 
     }
 
     #endregion

@@ -7,23 +7,19 @@ using UnityEngine.UI;
 public class ScoreUI : MonoBehaviour
 {
     #region Variables
-    
-    private ScoreManager scoreManager;
+
     [SerializeField] private Text scoreText;
-    
-    
+
     #endregion
+
 
     #region Unity lifecycle
 
     private void Start()
     {
-        scoreManager = FindObjectOfType<ScoreManager>();
-        int score = (int) Math.Round(scoreManager.FuelSaved);
+        int score = (int) Math.Round(ScoreManager.Instance.FuelSaved);
         scoreText.text = $"SCORE:\n{score}";
-
     }
 
     #endregion
-
 }

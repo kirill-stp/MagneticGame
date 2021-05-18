@@ -24,10 +24,7 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
     {
         if (instance != null)
         {
-            // небольшой костыль, т.к. объект не успевал удалиться к началу DI в LevelManager.
-            // Работает еще метод DestroyImmediate, но в документации написно,
-            // что его очень нежелательно использовать
-            gameObject.SetActive(false);
+            // Dont do costils cuz u just wrong used singleton
             Destroy(gameObject);
 
             return;

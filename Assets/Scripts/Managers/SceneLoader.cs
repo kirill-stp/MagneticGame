@@ -4,13 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
 {
-
     #region Events
 
     public static event Action OnStartSceneLoaded;
 
     #endregion
-    
+
+
     #region Private methods
 
     private void LoadScene(int index)
@@ -19,23 +19,24 @@ public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
         {
             SceneManager.LoadScene(index);
         }
-        else LoadWinScene();
+        else
+            LoadWinScene(); // No Java code plz. On new line or in {} braces
     }
 
     private void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
-    
+
     private void LoadWinScene()
     {
         SceneManager.LoadScene(1);
     }
-    
-    #endregion
-    
-    #region Public methods
 
+    #endregion
+
+
+    #region Public methods
 
     public void LoadNextScene()
     {
@@ -53,11 +54,12 @@ public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
         OnStartSceneLoaded?.Invoke();
         SceneManager.LoadScene(2);
     }
-    
+
     public void ExitGame()
     {
+        // Add logic for exit in editor
         Application.Quit();
     }
-    
+
     #endregion
 }

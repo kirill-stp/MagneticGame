@@ -6,10 +6,11 @@ public class BoxMagnet : Magnet
 {
     #region Variables
 
-    [Header(nameof(BoxMagnet))] 
+    [Header(nameof(BoxMagnet))]
     [SerializeField] private BoxCollider2D boxCollider;
 
     #endregion
+
 
     #region Private methods
 
@@ -32,7 +33,7 @@ public class BoxMagnet : Magnet
 
         // top or bottom
         else if ((bounds.min.x < ballPosition.x && bounds.max.x > ballPosition.x) &&
-                 (ballPosition.y < bounds.min.y || ballPosition.y > bounds.max.y))
+            (ballPosition.y < bounds.min.y || ballPosition.y > bounds.max.y))
         {
             var distance = magnetTransform.position.y - ballPosition.y;
             force = new Vector2(0, forceValue / distance);

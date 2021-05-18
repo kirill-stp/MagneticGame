@@ -11,9 +11,10 @@ public class Ball : MonoBehaviour
     [SerializeField] private Gradient negativeTrail;
 
     #endregion
-    
+
+
     #region Public Methods
-    
+
     public void AddForce(Vector2 force)
     {
         rb.AddForce(force);
@@ -21,14 +22,8 @@ public class Ball : MonoBehaviour
 
     public void TurnTrailOn(float forceValue)
     {
-        if (forceValue > 0)
-        {
-            trailRenderer.colorGradient = positiveTrail;
-        }
-        else
-        {
-            trailRenderer.colorGradient = negativeTrail;
-        }
+        // Use this type
+        trailRenderer.colorGradient = forceValue > 0 ? positiveTrail : negativeTrail;
 
         trailRenderer.emitting = true;
     }
