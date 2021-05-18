@@ -11,12 +11,16 @@ public class LevelManager : MonoBehaviour
     private ScoreManager scoreManager;
     private InputManager inputManager;
 
+    private bool isPaused;
+
     #endregion
 
     #region Unity lifecycle
 
     private void Start()
     {
+        isPaused = false;
+        
         // DI
         endHole = FindObjectOfType<EndHole>();
         sceneLoader = FindObjectOfType<SceneLoader>();
@@ -27,7 +31,9 @@ public class LevelManager : MonoBehaviour
         endHole.OnHoleEnter += sceneLoader.LoadNextScene;
         endHole.OnHoleEnter += AddFuelToScore;
         fuelManager.OnFuelEnd += sceneLoader.LoadLoseScene;
+        
         inputManager.OnFKeyPressed += FuelManager.TurnCheat;
+        inputManager.OnEscKeyPressed += TogglePause;
     }
 
     private void OnDestroy()
@@ -36,6 +42,7 @@ public class LevelManager : MonoBehaviour
         endHole.OnHoleEnter -= AddFuelToScore;
         fuelManager.OnFuelEnd -= sceneLoader.LoadLoseScene;
         inputManager.OnFKeyPressed -= FuelManager.TurnCheat;
+        inputManager.OnEscKeyPressed -= TogglePause;
     }
 
     #endregion
@@ -46,6 +53,19 @@ public class LevelManager : MonoBehaviour
     {
         var score = fuelManager.CurrentFuel;
         scoreManager.AddFuelSaved(score);
+    }
+
+    private void TogglePause()
+    {
+        isPaused = !isPaused;
+        if (isPaused)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
 
     #endregion
