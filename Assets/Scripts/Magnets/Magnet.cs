@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Magnet : MonoBehaviour
@@ -13,24 +11,27 @@ public abstract class Magnet : MonoBehaviour
 
     #endregion
 
+
     #region Properties
 
     public float ForceValue => forceValue;
 
     #endregion
 
+
     #region Events
 
-    public event Action OnMagnetDrag;
+    public event Action<Magnet> OnDragged;
 
     #endregion
+
 
     #region Unity lifecycle
 
     private void OnMouseDrag()
     {
         ApplyForce(ball);
-        OnMagnetDrag?.Invoke();
+        OnDragged?.Invoke(this);
     }
 
     private void OnMouseDown()
@@ -42,9 +43,9 @@ public abstract class Magnet : MonoBehaviour
     {
         ball.TurnTrailOff();
     }
-    
 
     #endregion
+
 
     #region Private methods
 

@@ -15,31 +15,32 @@ public class LevelManager : MonoBehaviour
 
     #endregion
 
+
     #region Unity lifecycle
 
     private void Start()
     {
         isPaused = false;
-        
-        // DI
+    }
+
+    private void OnEnable()
+    {
         endHole = FindObjectOfType<EndHole>();
         sceneLoader = FindObjectOfType<SceneLoader>();
         fuelManager = FindObjectOfType<FuelManager>();
-        scoreManager = FindObjectOfType<ScoreManager>();
-        inputManager = FindObjectOfType<InputManager>();
+        scoreManager = ScoreManager.Instance;
+        inputManager = InputManager.Instance;
 
-        endHole.OnHoleEnter += sceneLoader.LoadNextScene;
-        endHole.OnHoleEnter += AddFuelToScore;
+        endHole.OnEntered += EndHole_OnHoleEntered;
         fuelManager.OnFuelEnd += sceneLoader.LoadLoseScene;
-        
+
         inputManager.OnFKeyPressed += FuelManager.TurnCheat;
         inputManager.OnEscKeyPressed += TogglePause;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
-        endHole.OnHoleEnter -= sceneLoader.LoadNextScene;
-        endHole.OnHoleEnter -= AddFuelToScore;
+        endHole.OnEntered -= EndHole_OnHoleEntered;
         fuelManager.OnFuelEnd -= sceneLoader.LoadLoseScene;
         inputManager.OnFKeyPressed -= FuelManager.TurnCheat;
         inputManager.OnEscKeyPressed -= TogglePause;
@@ -47,7 +48,8 @@ public class LevelManager : MonoBehaviour
 
     #endregion
 
-     #region Private methods
+
+    #region Private methods
 
     private void AddFuelToScore()
     {
@@ -58,14 +60,19 @@ public class LevelManager : MonoBehaviour
     private void TogglePause()
     {
         isPaused = !isPaused;
-        if (isPaused)
-        {
-            Time.timeScale = 0;
-        }
-        else
-        {
-            Time.timeScale = 1;
-        }
+
+        Time.timeScale = isPaused ? 0 : 1;
+    }
+
+    #endregion
+
+
+    #region Event handlers
+
+    private void EndHole_OnHoleEntered()
+    {
+        sceneLoader.LoadNextScene();
+        AddFuelToScore();
     }
 
     #endregion

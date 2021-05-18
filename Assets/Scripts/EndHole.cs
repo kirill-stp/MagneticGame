@@ -5,17 +5,17 @@ public class EndHole : MonoBehaviour
 {
     #region Events
 
-    public event Action OnHoleEnter;
+    public event Action OnEntered;
 
     #endregion
-    
+
+
     #region Unity lifecycle
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        OnHoleEnter?.Invoke();
+        OnEntered?.Invoke();
     }
 
     #endregion
-    
 }

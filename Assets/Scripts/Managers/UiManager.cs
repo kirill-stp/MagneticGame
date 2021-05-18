@@ -19,6 +19,7 @@ public class UiManager : MonoBehaviour
     
     public void SetFuelLevel(float value)
     {
+        //TODO: remove hardcode
         progressBarImage.transform.localScale = new Vector3(value, 1, 1);
         var currentSprite = progressBarImage.sprite;
         if (value > .6f && currentSprite != fullFuelSprite)

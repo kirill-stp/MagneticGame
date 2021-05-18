@@ -19,7 +19,8 @@ public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
         {
             SceneManager.LoadScene(index);
         }
-        else LoadWinScene();
+        else
+            LoadWinScene();
     }
 
     private void LoadScene(string sceneName)
@@ -56,6 +57,7 @@ public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
     
     public void ExitGame()
     {
+        //TODO: add logic to exit from editor
         Application.Quit();
     }
     

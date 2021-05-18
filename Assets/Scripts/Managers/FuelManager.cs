@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class FuelManager : MonoBehaviour
@@ -7,14 +8,16 @@ public class FuelManager : MonoBehaviour
 
     [SerializeField] private float maxFuel;
     private float currentFuel;
-    
+
     [SerializeField] private Magnet[] magnets;
 
     private UiManager uiManager;
 
     private static bool isCheatOn;
-    
+    //TODO: add separate class for cheatcode managment
+
     #endregion
+
 
     #region Properties
 
@@ -25,11 +28,13 @@ public class FuelManager : MonoBehaviour
 
     #endregion
 
+
     #region Events
 
     public event Action OnFuelEnd;
 
     #endregion
+
 
     #region Unity lifecycle
 
@@ -38,26 +43,32 @@ public class FuelManager : MonoBehaviour
         currentFuel = maxFuel;
 
         isCheatOn = false;
-        
-        uiManager = FindObjectOfType<UiManager>();
 
+        uiManager = FindObjectOfType<UiManager>();
+    }
+
+    private void OnEnable()
+    {
         AddToMagnets();
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         RemoveFromMagnets();
     }
 
     #endregion
 
+
     #region Public methods
 
     private void ConsumeFuel(float value)
     {
         if (isCheatOn) return;
+
         currentFuel -= value;
-        uiManager.SetFuelLevel(currentFuel/maxFuel);
+        currentFuel = math.clamp(currentFuel,0,maxFuel);
+        uiManager.SetFuelLevel(currentFuel / maxFuel);
         CheckFuelLevel();
     }
 
@@ -67,6 +78,7 @@ public class FuelManager : MonoBehaviour
     }
 
     #endregion
+
 
     #region Private Methods
 
@@ -82,7 +94,7 @@ public class FuelManager : MonoBehaviour
     {
         foreach (var magnet in magnets)
         {
-            magnet.OnMagnetDrag += () => ConsumeFuel(Math.Abs(magnet.ForceValue/100));
+            magnet.OnDragged += Magnet_OnDragged;
         }
     }
 
@@ -90,8 +102,18 @@ public class FuelManager : MonoBehaviour
     {
         foreach (var magnet in magnets)
         {
-            magnet.OnMagnetDrag -= () => ConsumeFuel(Math.Abs(magnet.ForceValue/100));
+            magnet.OnDragged -= Magnet_OnDragged;
         }
+    }
+
+    #endregion
+
+
+    #region Event handlers
+
+    private void Magnet_OnDragged(Magnet magnet)
+    {
+        ConsumeFuel(Math.Abs(magnet.ForceValue / 100));
     }
 
     #endregion

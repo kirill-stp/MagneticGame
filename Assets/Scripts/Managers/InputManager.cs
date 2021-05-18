@@ -3,15 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
+public class InputManager : SingletonMonoBehaviour<InputManager>
 {
-
     #region Events
 
     public event Action OnFKeyPressed;
     public event Action OnEscKeyPressed;
 
     #endregion
+
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
