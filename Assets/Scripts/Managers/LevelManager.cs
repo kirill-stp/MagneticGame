@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     private EndHole endHole;
     private FuelManager fuelManager;
     private ScoreManager scoreManager;
+    private InputManager inputManager;
 
     #endregion
 
@@ -21,18 +22,12 @@ public class LevelManager : MonoBehaviour
         sceneLoader = FindObjectOfType<SceneLoader>();
         fuelManager = FindObjectOfType<FuelManager>();
         scoreManager = FindObjectOfType<ScoreManager>();
+        inputManager = FindObjectOfType<InputManager>();
 
         endHole.OnHoleEnter += sceneLoader.LoadNextScene;
         endHole.OnHoleEnter += AddFuelToScore;
         fuelManager.OnFuelEnd += sceneLoader.LoadLoseScene;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            FuelManager.TurnCheat();
-        }
+        inputManager.OnFKeyPressed += FuelManager.TurnCheat;
     }
 
     private void OnDestroy()
@@ -40,6 +35,7 @@ public class LevelManager : MonoBehaviour
         endHole.OnHoleEnter -= sceneLoader.LoadNextScene;
         endHole.OnHoleEnter -= AddFuelToScore;
         fuelManager.OnFuelEnd -= sceneLoader.LoadLoseScene;
+        inputManager.OnFKeyPressed -= FuelManager.TurnCheat;
     }
 
     #endregion
