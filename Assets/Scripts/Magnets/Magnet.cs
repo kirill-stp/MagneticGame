@@ -30,17 +30,20 @@ public abstract class Magnet : MonoBehaviour
 
     private void OnMouseDrag()
     {
+        if (!ball) return;
         ApplyForce(ball);
         OnDragged?.Invoke(this);
     }
 
     private void OnMouseDown()
     {
+        if (!ball) return;
         ball.TurnTrailOn(forceValue);
     }
 
     private void OnMouseUp()
     {
+        if (!ball) return;
         ball.TurnTrailOff();
     }
 

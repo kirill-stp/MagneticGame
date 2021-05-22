@@ -27,11 +27,8 @@ public class LevelManager : MonoBehaviour
 
     private void OnEnable()
     {
-        print(inputManager);
-        print(InputManager.Instance);
-        print(cheatCodeManager);
         endHole.OnEntered += EndHole_OnHoleEntered;
-        fuelManager.OnFuelEnd += sceneLoader.LoadLoseScene;
+        fuelManager.OnFuelEnd += UiManager.Instance.CreateGameOverView;
 
         inputManager.OnFKeyPressed += cheatCodeManager.TurnFuelCheat;
         inputManager.OnEscKeyPressed += TogglePause;
@@ -45,7 +42,7 @@ public class LevelManager : MonoBehaviour
     private void OnDisable()
     {
         endHole.OnEntered -= EndHole_OnHoleEntered;
-        fuelManager.OnFuelEnd -= sceneLoader.LoadLoseScene;
+        fuelManager.OnFuelEnd -= UiManager.Instance.CreateGameOverView;
         inputManager.OnFKeyPressed -= cheatCodeManager.TurnFuelCheat;
         inputManager.OnEscKeyPressed -= TogglePause;
     }

@@ -12,7 +12,6 @@ public class FuelManager : MonoBehaviour
 
     [SerializeField] private Magnet[] magnets;
 
-    private UiManager uiManager;
     private CheatCodeManager cheatCodeManager;
 
     #endregion
@@ -44,7 +43,6 @@ public class FuelManager : MonoBehaviour
 
     private void OnEnable()
     {
-        uiManager = FindObjectOfType<UiManager>();
         cheatCodeManager = CheatCodeManager.Instance;
         AddToMagnets();
     }
@@ -65,10 +63,10 @@ public class FuelManager : MonoBehaviour
 
         currentFuel -= value;
         currentFuel = math.clamp(currentFuel, 0, maxFuel);
-        uiManager.SetFuelLevel(currentFuel / maxFuel);
+        UiManager.Instance.SetFuelLevel(currentFuel / maxFuel);
         CheckFuelLevel();
     }
-    
+
     #endregion
 
 
@@ -79,6 +77,7 @@ public class FuelManager : MonoBehaviour
         if (currentFuel <= 0)
         {
             OnFuelEnd?.Invoke();
+            gameObject.SetActive(false);
         }
     }
 

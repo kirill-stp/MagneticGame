@@ -9,6 +9,7 @@ public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
     #region Events
 
     public static event Action OnStartSceneLoaded;
+    public static event Action OnSceneReloaded;
 
     #endregion
     
@@ -31,7 +32,7 @@ public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
     
     private void LoadWinScene()
     {
-        SceneManager.LoadScene(1);
+        LoadScene(1);
     }
     
     #endregion
@@ -54,6 +55,13 @@ public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
     {
         OnStartSceneLoaded?.Invoke();
         SceneManager.LoadScene(2);
+    }
+
+    public void ReloadCurrentScene()
+    {
+        var currentScene = SceneManager.GetActiveScene().buildIndex;
+        LoadScene(currentScene);
+        OnSceneReloaded?.Invoke();
     }
     
     public void ExitGame()

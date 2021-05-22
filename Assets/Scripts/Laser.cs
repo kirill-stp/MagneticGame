@@ -6,7 +6,6 @@ public class Laser : MonoBehaviour
 
     [Header(nameof(Laser))]
     [SerializeField] private GameObject destroyParticlePrefab;
-    
 
     #endregion
 
@@ -15,9 +14,9 @@ public class Laser : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Instantiate(destroyParticlePrefab,other.transform.position,new Quaternion());
+        Instantiate(destroyParticlePrefab, other.transform.position, new Quaternion());
         Destroy(other.gameObject);
-        
+        FindObjectOfType<UiManager>().CreateGameOverView();
     }
 
     #endregion

@@ -1351,9 +1351,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5476877223545875686, guid: 99e4bc3655bfa75478700a2c67dd518c,
         type: 3}
-      propertyPath: fuelText
+      propertyPath: gameOverView
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8319963277057653533, guid: 744014f37f97e1c4eae704559b3db8a4,
+        type: 3}
     - target: {fileID: 5476877223545875686, guid: 99e4bc3655bfa75478700a2c67dd518c,
         type: 3}
       propertyPath: progressBarImage
@@ -1656,8 +1657,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2285135712966684627, guid: 2abd2e137a20fe346aa7bcd8ab88fcbb, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2abd2e137a20fe346aa7bcd8ab88fcbb, type: 3}
 --- !u!1001 &7395679873377862715
 PrefabInstance:
