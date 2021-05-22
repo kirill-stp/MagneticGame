@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -57,7 +58,7 @@ public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
     
     public void ExitGame()
     {
-        //TODO: add logic to exit from editor
+        EditorApplication.isPlaying = false;
         Application.Quit();
     }
     

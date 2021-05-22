@@ -1,4 +1,5 @@
 ﻿using System;
+using Managers;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -10,6 +11,7 @@ public class LevelManager : MonoBehaviour
     private FuelManager fuelManager;
     private ScoreManager scoreManager;
     private InputManager inputManager;
+    private CheatCodeManager cheatCodeManager;
 
     private bool isPaused;
 
@@ -18,31 +20,33 @@ public class LevelManager : MonoBehaviour
 
     #region Unity lifecycle
 
-    private void Start()
+    private void Awake()
     {
-        isPaused = false;
+        FindObjects();
     }
 
     private void OnEnable()
     {
-        endHole = FindObjectOfType<EndHole>();
-        sceneLoader = FindObjectOfType<SceneLoader>();
-        fuelManager = FindObjectOfType<FuelManager>();
-        scoreManager = ScoreManager.Instance;
-        inputManager = InputManager.Instance;
-
+        print(inputManager);
+        print(InputManager.Instance);
+        print(cheatCodeManager);
         endHole.OnEntered += EndHole_OnHoleEntered;
         fuelManager.OnFuelEnd += sceneLoader.LoadLoseScene;
 
-        inputManager.OnFKeyPressed += FuelManager.TurnCheat;
+        inputManager.OnFKeyPressed += cheatCodeManager.TurnFuelCheat;
         inputManager.OnEscKeyPressed += TogglePause;
     }
 
+    private void Start()
+    {
+        isPaused = false;
+    }
+    
     private void OnDisable()
     {
         endHole.OnEntered -= EndHole_OnHoleEntered;
         fuelManager.OnFuelEnd -= sceneLoader.LoadLoseScene;
-        inputManager.OnFKeyPressed -= FuelManager.TurnCheat;
+        inputManager.OnFKeyPressed -= cheatCodeManager.TurnFuelCheat;
         inputManager.OnEscKeyPressed -= TogglePause;
     }
 
@@ -62,6 +66,16 @@ public class LevelManager : MonoBehaviour
         isPaused = !isPaused;
 
         Time.timeScale = isPaused ? 0 : 1;
+    }
+
+    private void FindObjects()
+    {
+        endHole = FindObjectOfType<EndHole>();
+        sceneLoader = FindObjectOfType<SceneLoader>();
+        fuelManager = FindObjectOfType<FuelManager>();
+        scoreManager = ScoreManager.Instance;
+        inputManager = InputManager.Instance;
+        cheatCodeManager = CheatCodeManager.Instance;
     }
 
     #endregion

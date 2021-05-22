@@ -1,4 +1,6 @@
-﻿public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
+﻿using System;
+
+public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
 {
     #region Variables
 
@@ -18,9 +20,18 @@
 
     private void Start()
     {
-        //TODO: unsubscription
-        SceneLoader.OnStartSceneLoaded += ResetFuel;
         fuelSaved = 0;
+    }
+
+    private void OnEnable()
+    {
+        SceneLoader.OnStartSceneLoaded += SceneLoader_OnStartSceneLoaded;
+        
+    }
+
+    private void OnDisable()
+    {
+        SceneLoader.OnStartSceneLoaded -= SceneLoader_OnStartSceneLoaded;
     }
 
     #endregion
@@ -37,6 +48,16 @@
     {
         print("Fuel reseted");
         fuelSaved = 0;
+    }
+
+    #endregion
+
+
+    #region Event handlers
+
+    private void SceneLoader_OnStartSceneLoaded()
+    {
+        ResetFuel();
     }
 
     #endregion

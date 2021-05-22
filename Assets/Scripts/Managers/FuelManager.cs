@@ -1,4 +1,5 @@
 ﻿using System;
+using Managers;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -12,9 +13,7 @@ public class FuelManager : MonoBehaviour
     [SerializeField] private Magnet[] magnets;
 
     private UiManager uiManager;
-
-    private static bool isCheatOn;
-    //TODO: add separate class for cheatcode managment
+    private CheatCodeManager cheatCodeManager;
 
     #endregion
 
@@ -41,14 +40,12 @@ public class FuelManager : MonoBehaviour
     private void Start()
     {
         currentFuel = maxFuel;
-
-        isCheatOn = false;
-
-        uiManager = FindObjectOfType<UiManager>();
     }
 
     private void OnEnable()
     {
+        uiManager = FindObjectOfType<UiManager>();
+        cheatCodeManager = CheatCodeManager.Instance;
         AddToMagnets();
     }
 
@@ -64,19 +61,14 @@ public class FuelManager : MonoBehaviour
 
     private void ConsumeFuel(float value)
     {
-        if (isCheatOn) return;
+        if (cheatCodeManager.IsFuelCheatOn) return;
 
         currentFuel -= value;
-        currentFuel = math.clamp(currentFuel,0,maxFuel);
+        currentFuel = math.clamp(currentFuel, 0, maxFuel);
         uiManager.SetFuelLevel(currentFuel / maxFuel);
         CheckFuelLevel();
     }
-
-    public static void TurnCheat()
-    {
-        isCheatOn = !isCheatOn;
-    }
-
+    
     #endregion
 
 
