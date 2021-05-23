@@ -32,7 +32,7 @@ public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
     
     private void LoadWinScene()
     {
-        LoadScene(1);
+        LoadScene(4);
     }
     
     #endregion
@@ -46,21 +46,17 @@ public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
         LoadScene(currentScene + 1);
     }
 
-    public void LoadLoseScene()
-    {
-        LoadScene(0);
-    }
-
     public void LoadStartScene()
     {
         OnStartSceneLoaded?.Invoke();
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(0);
     }
 
     public void ReloadCurrentScene()
     {
         var currentScene = SceneManager.GetActiveScene().buildIndex;
         LoadScene(currentScene);
+        Time.timeScale = 1f;
         OnSceneReloaded?.Invoke();
     }
     

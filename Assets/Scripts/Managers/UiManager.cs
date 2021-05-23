@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class UiManager : SingletonMonoBehaviour<UiManager>
@@ -13,7 +14,12 @@ public class UiManager : SingletonMonoBehaviour<UiManager>
     [SerializeField] private Sprite fullFuelSprite;
     [SerializeField] private Sprite mediumFuelSprite;
     [SerializeField] private Sprite lowFuelSprite;
-    [SerializeField] private GameObject gameOverView;
+    
+    [SerializeField] private GameObject gameOverViewPrefab;
+    [SerializeField] private GameObject pauseViewPrefab;
+
+    private GameObject pauseView;
+    private GameObject gameOverView;
 
     private float lowFuelLevel = .3f;
     private float MediumFuelLevel = .6f;
@@ -56,10 +62,19 @@ public class UiManager : SingletonMonoBehaviour<UiManager>
 
     public void CreateGameOverView()
     {
-        Instantiate(gameOverView);
+         gameOverView = Instantiate(gameOverViewPrefab);
     }
 
-    //TODO: make pause menu
+    public void CreatePauseView()
+    {
+        if (gameOverView) return;
+        pauseView = Instantiate(pauseViewPrefab);
+    }
+
+    public void DestroyPauseView()
+    {
+        Destroy(pauseView);
+    }
 
     #endregion
 }

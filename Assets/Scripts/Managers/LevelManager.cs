@@ -1,5 +1,4 @@
-﻿using System;
-using Managers;
+﻿using Managers;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -12,8 +11,7 @@ public class LevelManager : MonoBehaviour
     private ScoreManager scoreManager;
     private InputManager inputManager;
     private CheatCodeManager cheatCodeManager;
-
-    private bool isPaused;
+    private PauseManager pauseManager;
 
     #endregion
 
@@ -28,23 +26,23 @@ public class LevelManager : MonoBehaviour
     private void OnEnable()
     {
         endHole.OnEntered += EndHole_OnHoleEntered;
+        
         fuelManager.OnFuelEnd += UiManager.Instance.CreateGameOverView;
+        fuelManager.OnFuelEnd += pauseManager.TogglePause;
 
         inputManager.OnFKeyPressed += cheatCodeManager.TurnFuelCheat;
-        inputManager.OnEscKeyPressed += TogglePause;
+        inputManager.OnEscKeyPressed += pauseManager.TogglePause;
     }
 
-    private void Start()
-    {
-        isPaused = false;
-    }
-    
     private void OnDisable()
     {
         endHole.OnEntered -= EndHole_OnHoleEntered;
+        
         fuelManager.OnFuelEnd -= UiManager.Instance.CreateGameOverView;
+        fuelManager.OnFuelEnd -= pauseManager.TogglePause;
+        
         inputManager.OnFKeyPressed -= cheatCodeManager.TurnFuelCheat;
-        inputManager.OnEscKeyPressed -= TogglePause;
+        inputManager.OnEscKeyPressed -= pauseManager.TogglePause;
     }
 
     #endregion
@@ -58,18 +56,12 @@ public class LevelManager : MonoBehaviour
         scoreManager.AddFuelSaved(score);
     }
 
-    private void TogglePause()
-    {
-        isPaused = !isPaused;
-
-        Time.timeScale = isPaused ? 0 : 1;
-    }
-
     private void FindObjects()
     {
         endHole = FindObjectOfType<EndHole>();
         sceneLoader = FindObjectOfType<SceneLoader>();
         fuelManager = FindObjectOfType<FuelManager>();
+        pauseManager = FindObjectOfType<PauseManager>();
         scoreManager = ScoreManager.Instance;
         inputManager = InputManager.Instance;
         cheatCodeManager = CheatCodeManager.Instance;

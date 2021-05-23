@@ -48,5 +48,7 @@ MonoBehaviour:
   fullFuelSprite: {fileID: 21300000, guid: 46eb0043693812b47a87feb7ffb26dc1, type: 3}
   mediumFuelSprite: {fileID: 21300000, guid: 0ac099e23e7471b4b85629a36010e61c, type: 3}
   lowFuelSprite: {fileID: 21300000, guid: 8d06b326dab7377429a1a2ce558b46af, type: 3}
-  gameOverView: {fileID: 8319963277057653533, guid: 744014f37f97e1c4eae704559b3db8a4,
+  gameOverViewPrefab: {fileID: 8319963277057653533, guid: 744014f37f97e1c4eae704559b3db8a4,
+    type: 3}
+  pauseViewPrefab: {fileID: 702893459171287222, guid: ccd5e1ea49cd9f94b81d0a755be85c90,
     type: 3}

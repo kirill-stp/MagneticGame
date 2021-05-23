@@ -46,7 +46,6 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
 
     public void ResetFuel()
     {
-        print("Fuel reseted");
         fuelSaved = 0;
     }
 
