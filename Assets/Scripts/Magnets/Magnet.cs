@@ -9,6 +9,8 @@ public abstract class Magnet : MonoBehaviour
     [SerializeField] protected float forceValue;
     [SerializeField] private Ball ball;
 
+    private bool isInteractable;
+
     #endregion
 
 
@@ -28,23 +30,47 @@ public abstract class Magnet : MonoBehaviour
 
     #region Unity lifecycle
 
+    private void Start()
+    {
+        Enable();
+    }
+
     private void OnMouseDrag()
     {
-        if (!ball) return;
+        if (!ball || !isInteractable) return;
+
         ApplyForce(ball);
         OnDragged?.Invoke(this);
     }
 
     private void OnMouseDown()
     {
-        if (!ball) return;
+        if (!ball || !isInteractable) return;
+        print(isInteractable);
+
         ball.TurnTrailOn(forceValue);
     }
 
     private void OnMouseUp()
     {
-        if (!ball) return;
+        if (!ball || !isInteractable) return;
+
         ball.TurnTrailOff();
+    }
+
+    #endregion
+
+
+    #region Public Methods
+
+    public void Disable()
+    {
+        isInteractable = false;
+    }
+
+    public void Enable()
+    {
+        isInteractable = true;
     }
 
     #endregion

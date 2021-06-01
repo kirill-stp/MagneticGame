@@ -61,7 +61,7 @@ public class FuelManager : MonoBehaviour
     {
         if (cheatCodeManager.IsFuelCheatOn) return;
 
-        currentFuel -= value;
+        currentFuel -= value * Time.timeScale;
         currentFuel = math.clamp(currentFuel, 0, maxFuel);
         UiManager.Instance.SetFuelLevel(currentFuel / maxFuel);
         CheckFuelLevel();
@@ -77,6 +77,7 @@ public class FuelManager : MonoBehaviour
         if (currentFuel <= 0)
         {
             OnFuelEnd?.Invoke();
+            DisableMagnets();
             gameObject.SetActive(false);
         }
     }
@@ -97,6 +98,22 @@ public class FuelManager : MonoBehaviour
         }
     }
 
+    public void DisableMagnets()
+    {
+        foreach (var magnet in magnets)
+        {
+            magnet.Disable();
+        }
+    }
+    
+    public void EnableMagnets()
+    {
+        foreach (var magnet in magnets)
+        {
+            magnet.Enable();
+        }
+    }
+
     #endregion
 
 
@@ -104,7 +121,7 @@ public class FuelManager : MonoBehaviour
 
     private void Magnet_OnDragged(Magnet magnet)
     {
-        ConsumeFuel(Math.Abs(magnet.ForceValue / 100));
+        ConsumeFuel(Math.Abs(magnet.ForceValue / 300));
     }
 
     #endregion

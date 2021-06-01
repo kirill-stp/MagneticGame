@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BallMagnet : Magnet
 {
@@ -9,6 +7,6 @@ public class BallMagnet : Magnet
         var direction = transform.position - ball.transform.position;
         var distance = direction.magnitude;
         var force = direction.normalized * forceValue / distance;
-        ball.AddForce(force);
+        ball.AddForce(force * Time.deltaTime * 1e2f);
     }
 }

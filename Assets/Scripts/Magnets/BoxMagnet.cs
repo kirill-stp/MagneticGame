@@ -39,7 +39,7 @@ public class BoxMagnet : Magnet
         else
             return;
 
-        ball.AddForce(force);
+        ball.AddForce(force * Time.deltaTime * 1e2f);
     }
 
     #endregion
