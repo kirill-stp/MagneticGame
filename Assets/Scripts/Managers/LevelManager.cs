@@ -28,7 +28,6 @@ public class LevelManager : MonoBehaviour
         endHole.OnEntered += EndHole_OnHoleEntered;
         
         fuelManager.OnFuelEnd += pauseManager.EndGame;
-        fuelManager.OnFuelEnd += pauseManager.TogglePause;
 
         inputManager.OnFKeyPressed += cheatCodeManager.TurnFuelCheat;
         inputManager.OnEscKeyPressed += pauseManager.TogglePause;
@@ -39,8 +38,7 @@ public class LevelManager : MonoBehaviour
         endHole.OnEntered -= EndHole_OnHoleEntered;
         
         fuelManager.OnFuelEnd -= pauseManager.EndGame;
-        fuelManager.OnFuelEnd -= pauseManager.TogglePause;
-        
+
         inputManager.OnFKeyPressed -= cheatCodeManager.TurnFuelCheat;
         inputManager.OnEscKeyPressed -= pauseManager.TogglePause;
     }

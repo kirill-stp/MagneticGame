@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class Laser : MonoBehaviour
     {
         Instantiate(destroyParticlePrefab, other.transform.position, new Quaternion());
         Destroy(other.gameObject);
-        FindObjectOfType<UiManager>().CreateGameOverView();
+        FindObjectOfType<PauseManager>().DelayedEndGame(.5f);
     }
 
     #endregion

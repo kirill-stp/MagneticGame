@@ -46,7 +46,6 @@ public abstract class Magnet : MonoBehaviour
     private void OnMouseDown()
     {
         if (!ball || !isInteractable) return;
-        print(isInteractable);
 
         ball.TurnTrailOn(forceValue);
     }

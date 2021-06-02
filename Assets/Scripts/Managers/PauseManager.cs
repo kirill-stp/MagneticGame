@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PauseManager : MonoBehaviour
 {
@@ -11,17 +10,26 @@ public class PauseManager : MonoBehaviour
     #endregion
 
 
+    #region Unity Lifecycle
+
+    private void Start()
+    {
+        isPaused = false;
+        isGameOver = false;
+        print("start");
+    }
+
+    #endregion
+
+
     #region Public Methods
 
     // ReSharper disable Unity.PerformanceAnalysis
     public void TogglePause()
     {
-        isPaused = !isPaused;
-
-        if (!isPaused)
+        if (isPaused)
         {
             Resume();
-            if (isGameOver) SceneLoader.Instance.ReloadCurrentScene();
         }
         else
         {
@@ -31,26 +39,43 @@ public class PauseManager : MonoBehaviour
 
     public void EndGame()
     {
-        TogglePause();
         isGameOver = true;
+        Debug.Log("End Game");
+        Pause();
         UiManager.Instance.CreateGameOverView();
+    }
+
+    public void DelayedEndGame(float duration)
+    {
+        Invoke(nameof(EndGame), duration);
     }
 
     private void Pause()
     {
+        isPaused = true;
         Time.timeScale = 0;
 
         //TODO: make separate script(?) for magnet disable
         FindObjectOfType<FuelManager>().DisableMagnets();
-        UiManager.Instance.CreatePauseView();
+        if (!isGameOver) UiManager.Instance.CreatePauseView();
     }
 
     private void Resume()
     {
+        isPaused = false;
         Time.timeScale = 1;
         FindObjectOfType<FuelManager>().EnableMagnets();
-        UiManager.Instance.DestroyPauseView();
-        FindObjectOfType<Ball>().TurnTrailOff();
+
+        if (isGameOver)
+        {
+            SceneLoader.Instance.ReloadCurrentScene();
+            isGameOver = false;
+        }
+        else
+        {
+            UiManager.Instance.DestroyPauseView();
+            FindObjectOfType<Ball>().TurnTrailOff();
+        }
     }
 
     #endregion
