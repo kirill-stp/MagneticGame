@@ -16,7 +16,6 @@ public class PauseManager : MonoBehaviour
     {
         isPaused = false;
         isGameOver = false;
-        print("start");
     }
 
     #endregion
@@ -40,7 +39,6 @@ public class PauseManager : MonoBehaviour
     public void EndGame()
     {
         isGameOver = true;
-        Debug.Log("End Game");
         Pause();
         UiManager.Instance.CreateGameOverView();
     }

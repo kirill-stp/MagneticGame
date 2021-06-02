@@ -62,7 +62,7 @@ public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
     
     public void ExitGame()
     {
-        EditorApplication.isPlaying = false;
+        //EditorApplication.isPlaying = false;
         Application.Quit();
     }
     
